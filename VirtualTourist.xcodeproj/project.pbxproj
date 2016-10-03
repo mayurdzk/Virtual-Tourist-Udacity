@@ -15,6 +15,8 @@
 		774CFD1A1CEC343100931642 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774CFD191CEC343100931642 /* Pin.swift */; };
 		774CFD1C1CEC3C6400931642 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774CFD1B1CEC3C6400931642 /* Picture.swift */; };
 		774CFD1F1CEC3D0200931642 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 774CFD1D1CEC3D0200931642 /* Model.xcdatamodeld */; };
+		77D076E81DA2C030006DEAB6 /* ViewPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D076E71DA2C030006DEAB6 /* ViewPinViewController.swift */; };
+		77D076EB1DA2C092006DEAB6 /* SegueIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D076EA1DA2C092006DEAB6 /* SegueIdentifiers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		774CFD191CEC343100931642 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		774CFD1B1CEC3C6400931642 /* Picture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		774CFD1E1CEC3D0200931642 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		77D076E71DA2C030006DEAB6 /* ViewPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPinViewController.swift; sourceTree = "<group>"; };
+		77D076EA1DA2C092006DEAB6 /* SegueIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueIdentifiers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +80,8 @@
 		7762A7371CE9AAA800578D73 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				774CFD191CEC343100931642 /* Pin.swift */,
-				774CFD1B1CEC3C6400931642 /* Picture.swift */,
+				77D076E91DA2C07C006DEAB6 /* Identifiers */,
+				77D076E61DA2BFF3006DEAB6 /* Objects */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -93,8 +97,26 @@
 			isa = PBXGroup;
 			children = (
 				7702A53F1CE598C900D6A586 /* DropPinViewController.swift */,
+				77D076E71DA2C030006DEAB6 /* ViewPinViewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		77D076E61DA2BFF3006DEAB6 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				774CFD191CEC343100931642 /* Pin.swift */,
+				774CFD1B1CEC3C6400931642 /* Picture.swift */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		77D076E91DA2C07C006DEAB6 /* Identifiers */ = {
+			isa = PBXGroup;
+			children = (
+				77D076EA1DA2C092006DEAB6 /* SegueIdentifiers.swift */,
+			);
+			name = Identifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,11 +146,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Mayur;
 				TargetAttributes = {
 					772C9EFD1CE2F8030074E85E = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -169,8 +192,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				774CFD1C1CEC3C6400931642 /* Picture.swift in Sources */,
+				77D076E81DA2C030006DEAB6 /* ViewPinViewController.swift in Sources */,
 				774CFD1A1CEC343100931642 /* Pin.swift in Sources */,
 				774CFD1F1CEC3D0200931642 /* Model.xcdatamodeld in Sources */,
+				77D076EB1DA2C092006DEAB6 /* SegueIdentifiers.swift in Sources */,
 				772C9F021CE2F8040074E85E /* AppDelegate.swift in Sources */,
 				7702A5401CE598C900D6A586 /* DropPinViewController.swift in Sources */,
 			);
@@ -212,8 +237,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -257,8 +284,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -277,6 +306,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -289,6 +319,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mayur.VirtualTourist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -300,6 +331,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mayur.VirtualTourist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
