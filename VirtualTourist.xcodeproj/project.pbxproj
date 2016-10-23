@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7702A5401CE598C900D6A586 /* DropPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7702A53F1CE598C900D6A586 /* DropPinViewController.swift */; };
+		7708187E1DB4D5DA00FFD400 /* URLComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7708187D1DB4D5DA00FFD400 /* URLComponents.swift */; };
+		770818801DB4D78000FFD400 /* FlickrKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7708187F1DB4D78000FFD400 /* FlickrKeys.swift */; };
+		770818821DB4DF6900FFD400 /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770818811DB4DF6900FFD400 /* HelperMethods.swift */; };
 		772C9F021CE2F8040074E85E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772C9F011CE2F8040074E85E /* AppDelegate.swift */; };
 		772C9F091CE2F8040074E85E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 772C9F071CE2F8040074E85E /* Main.storyboard */; };
 		772C9F0B1CE2F8040074E85E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 772C9F0A1CE2F8040074E85E /* Assets.xcassets */; };
@@ -17,10 +20,14 @@
 		774CFD1F1CEC3D0200931642 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 774CFD1D1CEC3D0200931642 /* Model.xcdatamodeld */; };
 		77D076E81DA2C030006DEAB6 /* ViewPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D076E71DA2C030006DEAB6 /* ViewPinViewController.swift */; };
 		77D076EB1DA2C092006DEAB6 /* SegueIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D076EA1DA2C092006DEAB6 /* SegueIdentifiers.swift */; };
+		77D10D881DBCC44C00AED538 /* FlickrImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D10D871DBCC44C00AED538 /* FlickrImageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7702A53F1CE598C900D6A586 /* DropPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropPinViewController.swift; sourceTree = "<group>"; };
+		7708187D1DB4D5DA00FFD400 /* URLComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLComponents.swift; sourceTree = "<group>"; };
+		7708187F1DB4D78000FFD400 /* FlickrKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrKeys.swift; sourceTree = "<group>"; };
+		770818811DB4DF6900FFD400 /* HelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
 		772C9EFE1CE2F8030074E85E /* VirtualTourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualTourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		772C9F011CE2F8040074E85E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		772C9F081CE2F8040074E85E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -32,6 +39,7 @@
 		774CFD1E1CEC3D0200931642 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		77D076E71DA2C030006DEAB6 /* ViewPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPinViewController.swift; sourceTree = "<group>"; };
 		77D076EA1DA2C092006DEAB6 /* SegueIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueIdentifiers.swift; sourceTree = "<group>"; };
+		77D10D871DBCC44C00AED538 /* FlickrImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +53,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7708187C1DB4D5B800FFD400 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				7708187D1DB4D5DA00FFD400 /* URLComponents.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		770818831DB4DF7500FFD400 /* HelperMethods */ = {
+			isa = PBXGroup;
+			children = (
+				770818811DB4DF6900FFD400 /* HelperMethods.swift */,
+			);
+			name = HelperMethods;
+			sourceTree = "<group>";
+		};
 		772C9EF51CE2F8030074E85E = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +104,8 @@
 		7762A7371CE9AAA800578D73 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				770818831DB4DF7500FFD400 /* HelperMethods */,
+				7708187C1DB4D5B800FFD400 /* Networking */,
 				77D076E91DA2C07C006DEAB6 /* Identifiers */,
 				77D076E61DA2BFF3006DEAB6 /* Objects */,
 			);
@@ -89,6 +115,7 @@
 		7762A7381CE9AAB100578D73 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				77D10D871DBCC44C00AED538 /* FlickrImageCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -115,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				77D076EA1DA2C092006DEAB6 /* SegueIdentifiers.swift */,
+				7708187F1DB4D78000FFD400 /* FlickrKeys.swift */,
 			);
 			name = Identifiers;
 			sourceTree = "<group>";
@@ -193,11 +221,15 @@
 			files = (
 				774CFD1C1CEC3C6400931642 /* Picture.swift in Sources */,
 				77D076E81DA2C030006DEAB6 /* ViewPinViewController.swift in Sources */,
+				770818821DB4DF6900FFD400 /* HelperMethods.swift in Sources */,
 				774CFD1A1CEC343100931642 /* Pin.swift in Sources */,
+				77D10D881DBCC44C00AED538 /* FlickrImageCell.swift in Sources */,
 				774CFD1F1CEC3D0200931642 /* Model.xcdatamodeld in Sources */,
 				77D076EB1DA2C092006DEAB6 /* SegueIdentifiers.swift in Sources */,
 				772C9F021CE2F8040074E85E /* AppDelegate.swift in Sources */,
 				7702A5401CE598C900D6A586 /* DropPinViewController.swift in Sources */,
+				7708187E1DB4D5DA00FFD400 /* URLComponents.swift in Sources */,
+				770818801DB4D78000FFD400 /* FlickrKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
