@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Picture" syncable="YES">
+        <attribute name="localImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="associatedPin" optional="YES" transient="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pin" inverseName="pictures" inverseEntity="Pin" syncable="YES"/>
+    </entity>
+    <entity name="Pin" syncable="YES">
+        <attribute name="laltitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="pictures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="associatedPin" inverseEntity="Picture" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Pin" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Picture" positionX="-54" positionY="-9" width="128" height="90"/>
+    </elements>
+</model>

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct HelperMethods{
+struct ModelHelperMethods{
     
     /// The signature of this function is subject to change. Given a coordinate in (lat,long) format, this function outputs a square across space that is defined by its lower-left corner and top-right corner in the [(lat,Long), (lat,long)] format, such that the given coordinate is the center of that square.
     ///
