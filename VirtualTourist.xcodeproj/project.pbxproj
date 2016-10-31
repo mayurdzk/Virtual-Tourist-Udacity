@@ -15,6 +15,7 @@
 		772C9F091CE2F8040074E85E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 772C9F071CE2F8040074E85E /* Main.storyboard */; };
 		772C9F0B1CE2F8040074E85E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 772C9F0A1CE2F8040074E85E /* Assets.xcassets */; };
 		772C9F0E1CE2F8040074E85E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 772C9F0C1CE2F8040074E85E /* LaunchScreen.storyboard */; };
+		773F1A191DC761ED0098A31F /* APIMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773F1A181DC761ED0098A31F /* APIMethods.swift */; };
 		774CFD1A1CEC343100931642 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774CFD191CEC343100931642 /* Pin.swift */; };
 		774CFD1C1CEC3C6400931642 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774CFD1B1CEC3C6400931642 /* Picture.swift */; };
 		77BA914B1DC609DB00DACACE /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BA914A1DC609DB00DACACE /* CoreDataStack.swift */; };
@@ -35,6 +36,7 @@
 		772C9F0A1CE2F8040074E85E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		772C9F0D1CE2F8040074E85E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		772C9F0F1CE2F8040074E85E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		773F1A181DC761ED0098A31F /* APIMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIMethods.swift; sourceTree = "<group>"; };
 		774CFD191CEC343100931642 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		774CFD1B1CEC3C6400931642 /* Picture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		77BA914A1DC609DB00DACACE /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				7708187D1DB4D5DA00FFD400 /* URLComponents.swift */,
+				773F1A181DC761ED0098A31F /* APIMethods.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				770818821DB4DF6900FFD400 /* ModelHelperMethods.swift in Sources */,
 				77BA914B1DC609DB00DACACE /* CoreDataStack.swift in Sources */,
 				774CFD1A1CEC343100931642 /* Pin.swift in Sources */,
+				773F1A191DC761ED0098A31F /* APIMethods.swift in Sources */,
 				77D10D881DBCC44C00AED538 /* FlickrImageCell.swift in Sources */,
 				77D076EB1DA2C092006DEAB6 /* SegueIdentifiers.swift in Sources */,
 				772C9F021CE2F8040074E85E /* AppDelegate.swift in Sources */,
