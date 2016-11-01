@@ -21,6 +21,10 @@ class DropPinViewController: UIViewController, MKMapViewDelegate{
         addDroppingPinOnTapAndHold()
     }
     
+    override func viewDidLayoutSubviews() {
+        
+    }
+    
     @IBAction func editButtonPressed(_ sender: AnyObject) {
         toggleDeletionState()
     }

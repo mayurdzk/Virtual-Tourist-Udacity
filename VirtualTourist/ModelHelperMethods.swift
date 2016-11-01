@@ -33,4 +33,15 @@ struct ModelHelperMethods{
         }
         return (!escapedURL.isEmpty ? "?" : "") + escapedURL.joined(separator: "&")
     }
+    
+    func parse(rawJSON: Data, completionHandler: (_ result: AnyObject?, _ error: NSError?) -> Void) {
+        var jsonData: AnyObject!
+        do {
+            jsonData = try JSONSerialization.jsonObject(with: rawJSON, options: .allowFragments) as AnyObject
+        } catch {
+            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(rawJSON)'"]
+            completionHandler(nil, NSError(domain: "parse", code: 1, userInfo: userInfo))
+        }
+        completionHandler(jsonData, nil)
+    }
 }
