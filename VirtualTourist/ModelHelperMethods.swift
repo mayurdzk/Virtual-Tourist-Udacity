@@ -17,7 +17,7 @@ struct ModelHelperMethods{
     /// - returns: An array of two elements in the (lat,long) format that corresponds to the BBox dimensions.
     func convertToBBoxCoordinates(from pin: Pin) -> String{
         //As seen on:
-        let offset = 1.0 / 1000.0;
+        let offset = 50.0 / 1000.0;
         let latMax = pin.laltitude + offset;
         let latMin = pin.laltitude - offset;
         

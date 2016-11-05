@@ -115,6 +115,7 @@ extension DropPinViewController{
         } catch let error as NSError {
             print("An error occured accessing managed object context \(error.localizedDescription)")
         }
+        
         return pins
     }
     
@@ -130,14 +131,19 @@ extension DropPinViewController{
         apis.getPhotos(for: pin, completionHandler: { (success, message, data) in
             if success{
                 if let photosDictionary = data?["photos"] as? [String: AnyObject]{
+                    print("photosDictionary: \(photosDictionary)")
                     if let photosArray = photosDictionary["photo"] as? [[String: AnyObject]]{
-                        var pictures = [Picture]()
-                        for eachPhotoDictionary in photosArray{
-                            let photoURLString = eachPhotoDictionary["url_m"] as! String
-                            let picture = Picture(remoteImageURL: photoURLString, localImageURL: nil, associatedPin: pin, context: self.coreDataSharedContext)
-                            pictures.append(picture)
+                        print("photosArray \(photosArray)")
+                        DispatchQueue.main.sync {
+                            for eachPhotoDictionary in photosArray{
+                                let photoURLString = eachPhotoDictionary["url_m"] as! String
+                                print(photoURLString)
+                                let picture = Picture(photoURL: photoURLString, pin: pin, context: self.coreDataSharedContext)
+                            }
+                            self.coreDataSharedInstance.saveContext()
                         }
-                        pin.pictures = pictures
+                        //This line is not necessary since CoreData automatically manages this side of the relationship given that the relationship is set from the Picture Entity.
+                        //pin.pictures = pictures
                     }
                     else{
                         self.message = "Flickr didn't return the appropriate data."

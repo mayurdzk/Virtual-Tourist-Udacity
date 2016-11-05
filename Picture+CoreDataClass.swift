@@ -22,4 +22,18 @@ public class Picture: NSManagedObject {
             fatalError("Unable to find Pin entity")
         }
     }
+    
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
+    
+    init(photoURL: String, pin: Pin, context: NSManagedObjectContext) {
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Picture", in: context)!
+        super.init(entity: entity, insertInto: context)
+        
+        self.remoteImageURL = photoURL
+        self.localImageURL = nil
+        self.associatedPin = pin
+    }
 }
