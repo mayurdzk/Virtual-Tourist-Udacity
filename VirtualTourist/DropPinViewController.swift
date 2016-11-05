@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class DropPinViewController: UIViewController, MKMapViewDelegate{
     
@@ -15,22 +16,63 @@ class DropPinViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet var tapPinsToDeleteLabel: UILabel!
     @IBOutlet var editButton: UIButton!
     
+    let coreDataSharedContext = CoreDataStack.sharedInstance().managedObjectContext
+    let coreDataSharedInstance = CoreDataStack.sharedInstance()
+    
+    let apis = APIMethods.shared
+    
+    let loadingDialog = ProgressHUD(text: "Loading...")
+    
+    var message: String? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         tapPinsToDeleteLabel.isHidden = true
         addDroppingPinOnTapAndHold()
     }
     
     override func viewDidLayoutSubviews() {
-        
+        mapView.addAnnotations(fetchAllPins())
     }
     
     @IBAction func editButtonPressed(_ sender: AnyObject) {
         toggleDeletionState()
     }
+}
+
+extension DropPinViewController{
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? Pin {
+            let identifier = "Pin"
+            var view: MKPinAnnotationView
+            
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            } else {
+                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = false
+                view.animatesDrop = true
+                view.isDraggable = false
+            }
+            return view
+        }
+        return nil
+    }
     
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let pin = view.annotation as! Pin
+        if  tapPinsToDeleteLabel.isHidden{
+            //Download URLs for the Pin
+        }
+        else{
+            delete(pin: pin)
+        }
+    }
 }
 extension DropPinViewController{
+    
     func addDroppingPinOnTapAndHold(){
         let uilgr = UILongPressGestureRecognizer(target: self, action: #selector(DropPinViewController.addAnnotation(_:)))
         uilgr.minimumPressDuration = 1.0
@@ -44,6 +86,9 @@ extension DropPinViewController{
             annotation.coordinate = newCoordinates
             mapView.addAnnotation(annotation)
             print(["name":annotation.title,"latitude":"\(newCoordinates.latitude)","longitude":"\(newCoordinates.longitude)"])
+            let pin = Pin(coordinate: newCoordinates, context: coreDataSharedContext)
+            coreDataSharedInstance.saveContext()
+            self.getURLs(for: pin)
         }
     }
 }
@@ -58,5 +103,53 @@ extension DropPinViewController{
             editButton.setTitle("Edit", for: .normal)
         }
         tapPinsToDeleteLabel.isHidden = !tapPinsToDeleteLabel.isHidden
+    }
+    
+    
+    func fetchAllPins() -> [Pin] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Pin")
+        var pins:[Pin] = []
+        do {
+            let results = try coreDataSharedContext.fetch(fetchRequest)
+            pins = results as! [Pin]
+        } catch let error as NSError {
+            print("An error occured accessing managed object context \(error.localizedDescription)")
+        }
+        return pins
+    }
+    
+    func delete(pin: Pin) {
+        mapView.removeAnnotation(pin)
+        coreDataSharedContext.delete(pin)
+        coreDataSharedInstance.saveContext()
+    }
+    
+    func getURLs(for pin: Pin){
+        message = nil
+        
+        apis.getPhotos(for: pin, completionHandler: { (success, message, data) in
+            if success{
+                if let photosDictionary = data?["photos"] as? [String: AnyObject]{
+                    if let photosArray = photosDictionary["photo"] as? [[String: AnyObject]]{
+                        var pictures = [Picture]()
+                        for eachPhotoDictionary in photosArray{
+                            let photoURLString = eachPhotoDictionary["url_m"] as! String
+                            let picture = Picture(remoteImageURL: photoURLString, localImageURL: nil, associatedPin: pin, context: self.coreDataSharedContext)
+                            pictures.append(picture)
+                        }
+                        pin.pictures = pictures
+                    }
+                    else{
+                        self.message = "Flickr didn't return the appropriate data."
+                        return
+                    }
+                }
+                else{
+                    self.message = "Flickr didn't return the appropriate data."
+                    return
+                }
+            }
+            self.message = message
+        })
     }
 }

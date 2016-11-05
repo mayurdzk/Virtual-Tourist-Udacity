@@ -15,8 +15,17 @@ struct ModelHelperMethods{
     /// - parameter coordinates: The coordinates you want to convert in the BBox format provided in the (lat, long) format.
     ///
     /// - returns: An array of two elements in the (lat,long) format that corresponds to the BBox dimensions.
-    func convertToBBoxCoordinates(from coordinates: (Float, Float)) -> String{
-        return ""
+    func convertToBBoxCoordinates(from pin: Pin) -> String{
+        //As seen on:
+        let offset = 1.0 / 1000.0;
+        let latMax = pin.laltitude + offset;
+        let latMin = pin.laltitude - offset;
+        
+        let lngOffset = offset * cos(pin.laltitude * M_PI / 180.0);
+        let lngMax = pin.longitude + lngOffset;
+        let lngMin = pin.longitude - lngOffset;
+        
+        return "\(lngMin),\(latMin),\(lngMax),\(latMax)"
     }
     
     

@@ -13,13 +13,13 @@ struct APIMethods{
     static let shared = APIMethods()
     //MARK: Flickr specific API calls
     //TODO: Documentation pending.
-    func getPhotos(for bbox: String, completionHandler: @escaping(_ success: Bool, _ message:  String?)-> Void){
+    func getPhotos(for pin: Pin, completionHandler: @escaping(_ success: Bool, _ message:  String?, _ data: AnyObject?)-> Void){
         let parameters = [
             ParameterKeys.apiKey : FlickrKeys.Key,
             ParameterKeys.method : URLComponents.SearchMethod,
             ParameterKeys.format : ParameterValues.json,
             ParameterKeys.noJsonCallback: ParameterValues.noJsonCallBackOn,
-            ParameterKeys.bbox : bbox,
+            ParameterKeys.bbox : ModelHelperMethods.shared.convertToBBoxCoordinates(from: pin),
             ParameterKeys.sort: ParameterValues().randomSortValue(),
             ParameterKeys.safeSearch: ParameterValues.safeSearchOn,
             ParameterKeys.perPage: ParameterValues.perPageValue,
@@ -28,10 +28,10 @@ struct APIMethods{
         let _ = get(url: URLComponents.FlickrBaseURL, parameters: parameters as [String : AnyObject], parse: true) { (data, error) in
             if error != nil {
                 print(error!)
+                completionHandler(false, "Couldn't download new images for that location. Please try later.", nil)
             }
             else{
-                print("Success")
-                print("Data: \n\(data)")
+                completionHandler(true, nil, data)
             }
         }
     }
