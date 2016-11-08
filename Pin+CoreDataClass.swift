@@ -33,6 +33,7 @@ public class Pin: NSManagedObject, MKAnnotation {
         }
     }
     
+    
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
     }

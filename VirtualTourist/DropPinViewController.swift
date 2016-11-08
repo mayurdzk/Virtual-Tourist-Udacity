@@ -24,6 +24,7 @@ class DropPinViewController: UIViewController, MKMapViewDelegate{
     let loadingDialog = ProgressHUD(text: "Loading...")
     
     var message: String? = nil
+    var tappedPin: Pin? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,14 @@ class DropPinViewController: UIViewController, MKMapViewDelegate{
     
     @IBAction func editButtonPressed(_ sender: AnyObject) {
         toggleDeletionState()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueIdentifiers.SegueFromDropPinVCToViewPinVC{
+            let viewPinVC = segue.destination as! ViewPinViewController
+            
+            viewPinVC.pin = tappedPin!
+        }
     }
 }
 
@@ -64,7 +73,11 @@ extension DropPinViewController{
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let pin = view.annotation as! Pin
         if  tapPinsToDeleteLabel.isHidden{
-            //Download URLs for the Pin
+            //If pin's URLs are nil, display Loading dialog and fetch urls
+            // If pin's URLs are present but the count is 0, fetch urls, check for count, display dialog with 'Flickr doesn't have any images for that location'
+            //If count > 0, segue.
+            tappedPin = pin
+            performSegue(withIdentifier: SegueIdentifiers.SegueFromDropPinVCToViewPinVC, sender: nil)
         }
         else{
             delete(pin: pin)
@@ -84,9 +97,10 @@ extension DropPinViewController{
             let newCoordinates = mapView.convert(touchPoint, toCoordinateFrom: mapView)
             let annotation = MKPointAnnotation()
             annotation.coordinate = newCoordinates
-            mapView.addAnnotation(annotation)
+            
             print(["name":annotation.title,"latitude":"\(newCoordinates.latitude)","longitude":"\(newCoordinates.longitude)"])
             let pin = Pin(coordinate: newCoordinates, context: coreDataSharedContext)
+            mapView.addAnnotation(pin)
             coreDataSharedInstance.saveContext()
             self.getURLs(for: pin)
         }
@@ -105,7 +119,7 @@ extension DropPinViewController{
         tapPinsToDeleteLabel.isHidden = !tapPinsToDeleteLabel.isHidden
     }
     
-    
+    /// Returns an array of all pins saved in CoreData
     func fetchAllPins() -> [Pin] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Pin")
         var pins:[Pin] = []
@@ -115,10 +129,11 @@ extension DropPinViewController{
         } catch let error as NSError {
             print("An error occured accessing managed object context \(error.localizedDescription)")
         }
-        
         return pins
     }
     
+    /// Takes a pin as a parameter and deletes that pin.
+    /// pin: The pin you;d like to delete.
     func delete(pin: Pin) {
         mapView.removeAnnotation(pin)
         coreDataSharedContext.delete(pin)
@@ -127,7 +142,6 @@ extension DropPinViewController{
     
     func getURLs(for pin: Pin){
         message = nil
-        
         apis.getPhotos(for: pin, completionHandler: { (success, message, data) in
             if success{
                 if let photosDictionary = data?["photos"] as? [String: AnyObject]{
@@ -138,7 +152,7 @@ extension DropPinViewController{
                             for eachPhotoDictionary in photosArray{
                                 let photoURLString = eachPhotoDictionary["url_m"] as! String
                                 print(photoURLString)
-                                let picture = Picture(photoURL: photoURLString, pin: pin, context: self.coreDataSharedContext)
+                                _ = Picture(photoURL: photoURLString, pin: pin, context: self.coreDataSharedContext)
                             }
                             self.coreDataSharedInstance.saveContext()
                         }

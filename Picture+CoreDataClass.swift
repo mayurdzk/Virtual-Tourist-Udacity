@@ -6,7 +6,7 @@
 //  Copyright © 2016 Mayur. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 
@@ -25,6 +25,22 @@ public class Picture: NSManagedObject {
     
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
+    }
+    
+    var image: UIImage? {
+        if localImageURL != nil {
+            let fileURL = getFileURL()
+            return UIImage(contentsOfFile: fileURL.path!)
+        }
+        return nil
+    }
+    
+    func getFileURL() -> NSURL {
+        let fileName = (localImageURL! as NSString).lastPathComponent
+        let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let pathArray:[String] = [dirPath, fileName]
+        let fileURL = NSURL.fileURL(withPathComponents: pathArray)
+        return fileURL! as NSURL
     }
     
     init(photoURL: String, pin: Pin, context: NSManagedObjectContext) {

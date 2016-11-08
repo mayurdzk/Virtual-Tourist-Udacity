@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 struct APIMethods{
     static let shared = APIMethods()
@@ -41,19 +42,27 @@ struct APIMethods{
     /// - Parameters:
     ///   - url: URL for the image.
     ///   - completionHandler: Called with a success value decided by whether data was revcieved and if the recieved Data can be converted to a UIImage.
-    func getImage(from url: String, completionHandler: @escaping(_ success: Bool, _ message:  String?, _ imageData: Data?)-> Void) -> Void{
+    func getImage(from photo: Picture, completionHandler: @escaping(_ success: Bool, _ message:  String?)-> Void) -> Void{
         //let testURL = "https://farm3.staticflickr.com/2158/2211771368_a063bfe0d1.jpg"
         
-        let _ = get(url: url, parameters: nil, parse: false) { (data, error) in
+        let _ = get(url: photo.remoteImageURL!, parameters: nil, parse: false) { (data, error) in
             if error != nil {
-                completionHandler(false, "Image could not be downloaded.", nil)
+                completionHandler(false, "Image could not be downloaded.")
             }
             else{
                 if let _ = UIImage(data: data as! Data) {
-                    completionHandler(false, "Image could not be downloaded", data as? Data)
+                    DispatchQueue.main.async {
+                        let fileName = (photo.remoteImageURL! as NSString).lastPathComponent
+                        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                        let pathArray = [path, fileName]
+                        let fileURL = NSURL.fileURL(withPathComponents: pathArray)!
+                        FileManager.default.createFile(atPath: fileURL.path, contents: (data as! Data), attributes: nil)
+                        photo.localImageURL = fileURL.path
+                        completionHandler(true, nil)
+                    }
                 }
                 else{
-                    completionHandler(false, "The data was not an image.", nil)
+                    completionHandler(false, "The data was not an image.")
                 }
             }
         }

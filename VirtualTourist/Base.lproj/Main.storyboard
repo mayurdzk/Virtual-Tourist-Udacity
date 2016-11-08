@@ -181,6 +181,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomCollectionView" destination="dxh-2Q-uOL" id="Dh6-fM-ofI"/>
                         <outlet property="topMapView" destination="4pU-r9-XpK" id="KvF-qO-SBD"/>
                     </connections>
                 </viewController>
