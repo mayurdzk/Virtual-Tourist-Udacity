@@ -112,7 +112,11 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="O2J-HV-gXu"/>
-                                    <barButtonItem title="New Collection" id="ZyX-aS-SlO"/>
+                                    <barButtonItem title="New Collection" id="ZyX-aS-SlO">
+                                        <connections>
+                                            <action selector="newCollectionButtonTouchUpInside:" destination="rhG-5p-t4T" id="czv-sp-X4A"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ICj-92-OsF"/>
                                 </items>
                             </toolbar>
@@ -182,6 +186,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomCollectionView" destination="dxh-2Q-uOL" id="Dh6-fM-ofI"/>
+                        <outlet property="newCollectionButton" destination="ZyX-aS-SlO" id="fde-4z-0MF"/>
                         <outlet property="topMapView" destination="4pU-r9-XpK" id="KvF-qO-SBD"/>
                     </connections>
                 </viewController>

@@ -72,6 +72,7 @@ extension DropPinViewController{
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let pin = view.annotation as! Pin
+        mapView.deselectAnnotation(pin, animated: false)
         if  tapPinsToDeleteLabel.isHidden{
             //If pin's URLs are nil, display Loading dialog and fetch urls
             // If pin's URLs are present but the count is 0, fetch urls, check for count, display dialog with 'Flickr doesn't have any images for that location'
