@@ -171,7 +171,7 @@ extension ViewPinViewController: UICollectionViewDelegate, UICollectionViewDataS
         callForReload = false
         itemsCount -= 1
         callForReload = true
-        print("Deleting indexPAth: section: \(indexPath.section), item: \(indexPath.item)")
+        print("Deleting indexPath: section: \(indexPath.section), item: \(indexPath.item)")
         collectionView.deleteItems(at: [indexPath])
         coreDataSharedInstance.saveContext()
     }
@@ -243,8 +243,8 @@ extension ViewPinViewController{
             if eachPhoto.localImageURL == nil && eachPhoto.remoteImageURL != nil{
                 apis.getImage(from: eachPhoto, completionHandler: { (success, message) in
                     if success{
-                        self.itemsCount = (self.fetchedResultsController.fetchedObjects?.count)!
                         self.coreDataSharedInstance.saveContext()
+                        self.itemsCount = (self.fetchedResultsController.fetchedObjects?.count)!
                         self.bottomCollectionView.reloadData()
                     }
                     else{

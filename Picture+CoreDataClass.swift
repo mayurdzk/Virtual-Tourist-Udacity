@@ -28,11 +28,17 @@ public class Picture: NSManagedObject {
     }
     
     var image: UIImage? {
-        if localImageURL != nil {
-            let fileURL = getFileURL()
-            return UIImage(contentsOfFile: fileURL.path!)
+//        if localImageURL != nil {
+//            let fileURL = getFileURL()
+//            return UIImage(contentsOfFile: fileURL.path!)
+//        }
+        //MARK: Changed to comply with Udacity's rubric.
+        if let imageBin = imageBinary as? Data{
+            return UIImage(data: imageBin)
         }
-        return nil
+        else{
+            return nil
+        }
     }
     
     func getFileURL() -> NSURL {
@@ -43,8 +49,17 @@ public class Picture: NSManagedObject {
         return fileURL! as NSURL
     }
     
-    init(photoURL: String, pin: Pin, context: NSManagedObjectContext) {
+    init(photoBinary: NSData, pin: Pin, context: NSManagedObjectContext){
+        let entity = NSEntityDescription.entity(forEntityName: "Picture", in: context)!
+        super.init(entity: entity, insertInto: context)
         
+        self.remoteImageURL = nil
+        self.localImageURL = nil
+        self.imageBinary = photoBinary
+        self.associatedPin = pin
+    }
+    
+    init(photoURL: String, pin: Pin, context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entity(forEntityName: "Picture", in: context)!
         super.init(entity: entity, insertInto: context)
         

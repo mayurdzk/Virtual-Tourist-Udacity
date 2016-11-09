@@ -58,6 +58,8 @@ struct APIMethods{
                         let fileURL = NSURL.fileURL(withPathComponents: pathArray)!
                         FileManager.default.createFile(atPath: fileURL.path, contents: (data as! Data), attributes: nil)
                         photo.localImageURL = fileURL.path
+                        //MARK: Saved image as binary data as per the Rubric.
+                        photo.imageBinary = data as! NSData
                         completionHandler(true, nil)
                     }
                 }

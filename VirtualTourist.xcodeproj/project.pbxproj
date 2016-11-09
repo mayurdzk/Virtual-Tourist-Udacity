@@ -54,6 +54,7 @@
 		77D076EA1DA2C092006DEAB6 /* SegueIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueIdentifiers.swift; sourceTree = "<group>"; };
 		77D10D871DBCC44C00AED538 /* FlickrImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrImageCell.swift; sourceTree = "<group>"; };
 		77D10D8A1DBCCA2500AED538 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		77FC580D1DD335C40052E390 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,9 +423,10 @@
 		77D10D891DBCCA2500AED538 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				77FC580D1DD335C40052E390 /* Model 2.xcdatamodel */,
 				77D10D8A1DBCCA2500AED538 /* Model.xcdatamodel */,
 			);
-			currentVersion = 77D10D8A1DBCCA2500AED538 /* Model.xcdatamodel */;
+			currentVersion = 77FC580D1DD335C40052E390 /* Model 2.xcdatamodel */;
 			name = Model.xcdatamodeld;
 			path = ../Model.xcdatamodeld;
 			sourceTree = "<group>";
